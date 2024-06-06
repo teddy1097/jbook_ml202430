@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notebooks with MyST Markdown &#8212; jbook_ml202330</title>
+    <title>Modelos Estadísticos &#8212; jbook_ml202330</title>
   
   
   
@@ -60,7 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Informe Python" href="notebooks.html" />
+    <link rel="next" title="IPRUEBA DE INFORME AQUi" href="prueba.html" />
+    <link rel="prev" title="Análisis Exploratorio" href="notebooks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,9 +178,19 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="EDA.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Informe Python</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Análisis Exploratorio</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos Estadísticos</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="prueba.html">IPRUEBA DE INFORME AQUi</a></li>
 </ul>
 
     </div>
@@ -281,7 +292,7 @@
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/markdown-notebooks.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -291,7 +302,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -365,7 +376,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Modelos Estadísticos</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -375,10 +386,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelos Estadísticos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#arima">ARIMA</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-resultados-de-modelos-arima">Interpretación de los Resultados de Modelos ARIMA</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -389,51 +401,1028 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Link to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Link to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="modelos-estadisticos">
+<h1>Modelos Estadísticos<a class="headerlink" href="#modelos-estadisticos" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Se realiza un análisis de la predicción del precio de cierre de Bitcoin utilizando suavizado exponencial. Se descargan datos históricos y se dividen en conjuntos de entrenamiento, validación y prueba. Se aplican dos métodos de suavizado: simple y doble, manualmente y con la librería <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. Se evalúa la precisión de las predicciones usando métricas como MAPE, RMSE y R2 ajustado, comparando la efectividad de los modelos en diferentes períodos de validación. Los resultados se presentan en una tabla para determinar la configuración más eficaz para la predicción.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.seasonal</span> <span class="kn">import</span> <span class="n">seasonal_decompose</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span> <span class="k">as</span> <span class="n">Autocorrelation</span><span class="p">,</span> <span class="n">plot_pacf</span> <span class="k">as</span> <span class="n">ParcialAutocorrelation</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span> <span class="k">as</span> <span class="n">A_DickeyFuller</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">arch</span> <span class="kn">import</span> <span class="n">arch_model</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.api</span> <span class="kn">import</span> <span class="n">SimpleExpSmoothing</span><span class="p">,</span> <span class="n">ExponentialSmoothing</span><span class="p">,</span> <span class="n">ARIMA</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.diagnostic</span> <span class="kn">import</span> <span class="n">acorr_ljungbox</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">jarque_bera</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurtosis</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">kpss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>  <span class="c1"># Para advertencias de runtime</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span> 
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span> 
+
+
+<span class="c1"># Descargar datos de BTC-USD</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;BTC-USD&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2017-11-09&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2023-05-07&#39;</span><span class="p">,</span><span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Close&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Función para dividir el conjunto de datos en entrenamiento, validación y prueba</span>
+<span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">val_days</span><span class="p">,</span> <span class="n">test_days</span><span class="p">):</span>
+    <span class="n">val_size</span> <span class="o">=</span> <span class="n">val_days</span>
+    <span class="n">test_size</span> <span class="o">=</span> <span class="n">test_days</span>
+    <span class="n">train_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">val_size</span> <span class="o">+</span> <span class="n">test_size</span><span class="p">)</span>
+
+    <span class="n">train</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">]</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span> <span class="o">+</span> <span class="n">test_size</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">test</span>
+
+<span class="c1"># Ejemplo de uso</span>
+<span class="n">train_7</span><span class="p">,</span> <span class="n">val_7</span><span class="p">,</span> <span class="n">test_7</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">train_14</span><span class="p">,</span> <span class="n">val_14</span><span class="p">,</span> <span class="n">test_14</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">train_21</span><span class="p">,</span> <span class="n">val_21</span><span class="p">,</span> <span class="n">test_21</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">train_28</span><span class="p">,</span> <span class="n">val_28</span><span class="p">,</span> <span class="n">test_28</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">simple_exponential_smoothing</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># primer valor es el mismo que la serie</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)):</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">result</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">double_exponential_smoothing</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+    <span class="n">level</span><span class="p">,</span> <span class="n">trend</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">series</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)):</span>
+        <span class="n">last_level</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="n">level</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="n">trend</span><span class="p">)</span>
+        <span class="n">trend</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">level</span> <span class="o">-</span> <span class="n">last_level</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">trend</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="n">trend</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+    <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">))</span>
+    <span class="n">r2_adj</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mape</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">r2_adj</span>
+
+<span class="n">results_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">taus</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="n">train_sets</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_7</span><span class="p">,</span> <span class="n">train_14</span><span class="p">,</span> <span class="n">train_21</span><span class="p">,</span> <span class="n">train_28</span><span class="p">]</span>
+<span class="n">val_sets</span> <span class="o">=</span> <span class="p">[</span><span class="n">val_7</span><span class="p">,</span> <span class="n">val_14</span><span class="p">,</span> <span class="n">val_21</span><span class="p">,</span> <span class="n">val_28</span><span class="p">]</span>
+<span class="n">test_sets</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_7</span><span class="p">,</span> <span class="n">test_14</span><span class="p">,</span> <span class="n">test_21</span><span class="p">,</span> <span class="n">test_28</span><span class="p">]</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="k">for</span> <span class="n">tau</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">taus</span><span class="p">,</span> <span class="n">train_sets</span><span class="p">,</span> <span class="n">val_sets</span><span class="p">,</span> <span class="n">test_sets</span><span class="p">):</span>
+    <span class="c1"># Ajustar y predecir con Simple Exponential Smoothing (SES)</span>
+    <span class="n">train_val</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">])</span>
+    <span class="n">train_val_pred_ses</span> <span class="o">=</span> <span class="n">simple_exponential_smoothing</span><span class="p">(</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">val_pred_ses</span> <span class="o">=</span> <span class="n">train_val_pred_ses</span><span class="p">[</span><span class="o">-</span><span class="n">tau</span><span class="p">:]</span>
+
+    <span class="c1"># Ajustar y predecir con SES usando statsmodels</span>
+    <span class="kn">from</span> <span class="nn">statsmodels.tsa.holtwinters</span> <span class="kn">import</span> <span class="n">SimpleExpSmoothing</span>
+    <span class="n">model_ses</span> <span class="o">=</span> <span class="n">SimpleExpSmoothing</span><span class="p">(</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">])</span>
+    <span class="n">model_fit_ses</span> <span class="o">=</span> <span class="n">model_ses</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">smoothing_level</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">val_pred_ses_sm</span> <span class="o">=</span> <span class="n">model_fit_ses</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="o">-</span><span class="n">tau</span><span class="p">:]</span>
+
+    <span class="c1"># Ajustar y predecir con Double Exponential Smoothing (DES)</span>
+    <span class="n">train_val_pred_des</span> <span class="o">=</span> <span class="n">double_exponential_smoothing</span><span class="p">(</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="n">val_pred_des</span> <span class="o">=</span> <span class="n">train_val_pred_des</span><span class="p">[</span><span class="o">-</span><span class="n">tau</span><span class="p">:]</span>
+
+    <span class="c1"># Ajustar y predecir con DES usando statsmodels</span>
+    <span class="kn">from</span> <span class="nn">statsmodels.tsa.holtwinters</span> <span class="kn">import</span> <span class="n">ExponentialSmoothing</span>
+    <span class="n">model_des</span> <span class="o">=</span> <span class="n">ExponentialSmoothing</span><span class="p">(</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;add&#39;</span><span class="p">)</span>
+    <span class="n">model_fit_des</span> <span class="o">=</span> <span class="n">model_des</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">smoothing_level</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">smoothing_slope</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">val_pred_des_sm</span> <span class="o">=</span> <span class="n">model_fit_des</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">[</span><span class="o">-</span><span class="n">tau</span><span class="p">:]</span>
+
+    <span class="c1"># Evaluar modelos</span>
+    <span class="n">mape_ses</span><span class="p">,</span> <span class="n">rmse_ses</span><span class="p">,</span> <span class="n">r2_adj_ses</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">val_pred_ses</span><span class="p">)</span>
+    <span class="n">mape_ses_sm</span><span class="p">,</span> <span class="n">rmse_ses_sm</span><span class="p">,</span> <span class="n">r2_adj_ses_sm</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">val_pred_ses_sm</span><span class="p">)</span>
+    <span class="n">mape_des</span><span class="p">,</span> <span class="n">rmse_des</span><span class="p">,</span> <span class="n">r2_adj_des</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">val_pred_des</span><span class="p">)</span>
+    <span class="n">mape_des_sm</span><span class="p">,</span> <span class="n">rmse_des_sm</span><span class="p">,</span> <span class="n">r2_adj_des_sm</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">val_pred_des_sm</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SES&#39;</span><span class="p">,</span> <span class="s1">&#39;SES (statsmodels)&#39;</span><span class="p">,</span> <span class="s1">&#39;DES&#39;</span><span class="p">,</span> <span class="s1">&#39;DES (statsmodels)&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;MAPE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">mape_ses</span><span class="p">,</span> <span class="n">mape_ses_sm</span><span class="p">,</span> <span class="n">mape_des</span><span class="p">,</span> <span class="n">mape_des_sm</span><span class="p">],</span>
+        <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">rmse_ses</span><span class="p">,</span> <span class="n">rmse_ses_sm</span><span class="p">,</span> <span class="n">rmse_des</span><span class="p">,</span> <span class="n">rmse_des_sm</span><span class="p">],</span>
+        <span class="s1">&#39;R2_adj&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">r2_adj_ses</span><span class="p">,</span> <span class="n">r2_adj_ses_sm</span><span class="p">,</span> <span class="n">r2_adj_des</span><span class="p">,</span> <span class="n">r2_adj_des_sm</span><span class="p">],</span>
+        <span class="s1">&#39;Tau&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">tau</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="p">})</span>
+
+    <span class="n">results_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="c1"># Consolidar los resultados en un DataFrame</span>
+<span class="n">final_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results_list</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Mostrar los resultados finales en una tabla</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultados Finales de Modelos Exponenciales con Múltiples Taus&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_results</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultados Finales de Modelos Exponenciales con Múltiples Taus
+                Model      MAPE         RMSE    R2_adj  Tau
+0                 SES  0.018802   639.272299  0.286454    7
+1   SES (statsmodels)  0.023503   799.090373 -0.114915    7
+2                 DES  0.022872   762.816050 -0.015990    7
+3   DES (statsmodels)  0.028701   961.522269 -0.614242    7
+4                 SES  0.031011   996.785631  0.129120   14
+5   SES (statsmodels)  0.038763  1245.982038 -0.360750   14
+6                 DES  0.028019  1015.474810  0.096157   14
+7   DES (statsmodels)  0.035058  1267.167409 -0.407417   14
+8                 SES  0.017962   690.870804  0.564336   21
+9   SES (statsmodels)  0.022453   863.588505  0.319275   21
+10                DES  0.026691   827.749704  0.374603   21
+11  DES (statsmodels)  0.028681   891.948200  0.273832   21
+12                SES  0.035669  1303.325199  0.293587   28
+13  SES (statsmodels)  0.044586  1629.156499 -0.103771   28
+14                DES  0.046212  1430.576107  0.148910   28
+15  DES (statsmodels)  0.054226  1771.020072 -0.304368   28
 </pre></div>
 </div>
 </div>
 </div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
-</section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
+<p>Se realiza una visualización de residuos para modelos de suavizado exponencial simple (SES) aplicados a datos de precios de cierre. La visualización incluye cuatro tipos de gráficos para cada periodo <code class="docutils literal notranslate"><span class="pre">tau</span></code>:</p>
 <ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
+<li><p><strong>Serie Temporal de Residuos</strong>: Muestra los residuos como una serie temporal, indicando el <code class="docutils literal notranslate"><span class="pre">tau</span></code> correspondiente.</p></li>
+<li><p><strong>Histograma de Residuos</strong>: Presenta la distribución de los residuos con una estimación de densidad.</p></li>
+<li><p><strong>QQ Plot</strong>: Compara la distribución de los residuos con una distribución normal teórica.</p></li>
+<li><p><strong>Autocorrelación (ACF)</strong>: Examina la correlación de los residuos a diferentes lags.</p></li>
 </ol>
-<p>That’s all that is needed to get started!</p>
-</section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Link to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
+<p>Estos gráficos ayudan a evaluar la calidad de las predicciones del modelo, identificando patrones no aleatorios o dependencias en los residuos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualización de residuos para todos los modelos y taus</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">taus</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">taus</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tau</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">taus</span><span class="p">):</span>
+    <span class="n">train</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">train_sets</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">val_sets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">residuals_ses</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">simple_exponential_smoothing</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">])[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="p">)[</span><span class="o">-</span><span class="n">tau</span><span class="p">:]</span>
+    <span class="n">residuals_des</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">double_exponential_smoothing</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">])[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)[</span><span class="o">-</span><span class="n">tau</span><span class="p">:]</span>
+
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residuals_ses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Tau </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Serie de Tiempo de Residuos (SES)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">residuals_ses</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histograma de Residuos (SES)&#39;</span><span class="p">)</span>
+
+    <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">residuals_ses</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;QQPlot de Residuos (SES)&#39;</span><span class="p">)</span>
+
+    <span class="n">max_lags</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">residuals_ses</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">residuals_ses</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="n">max_lags</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ACF de Residuos (SES)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17b636e6e6f45a95255979881ce36e04621e941ef48304aed5f42a9d4b0981cd.png" src="_images/17b636e6e6f45a95255979881ce36e04621e941ef48304aed5f42a9d4b0981cd.png" />
+</div>
+</div>
+<p>Vamos a analizar los resultados de los modelos de suavización exponencial (SES) y suavización exponencial doble (DES).</p>
+<p><strong>Análisis de los Resultados</strong></p>
+<ul class="simple">
+<li><p>Resultados de los Modelos Exponenciales con Múltiples Taus</p></li>
+</ul>
+<p>La tabla presenta los resultados para diferentes modelos y horizontes de predicción (tau). Los modelos evaluados son SES y DES, con una implementación adicional de SES y DES usando statsmodels. Los resultados incluyen el Error Porcentual Absoluto Medio (MAPE), la Raíz del Error Cuadrático Medio (RMSE) y el Coeficiente de Determinación Ajustado (R2_adj).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Crear el DataFrame con tus datos</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;SES&quot;</span><span class="p">,</span> <span class="s2">&quot;SES (statsmodels)&quot;</span><span class="p">,</span> <span class="s2">&quot;DES&quot;</span><span class="p">,</span> <span class="s2">&quot;DES (statsmodels)&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;SES&quot;</span><span class="p">,</span> <span class="s2">&quot;SES (statsmodels)&quot;</span><span class="p">,</span> <span class="s2">&quot;DES&quot;</span><span class="p">,</span> <span class="s2">&quot;DES (statsmodels)&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;SES&quot;</span><span class="p">,</span> <span class="s2">&quot;SES (statsmodels)&quot;</span><span class="p">,</span> <span class="s2">&quot;DES&quot;</span><span class="p">,</span> <span class="s2">&quot;DES (statsmodels)&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;SES&quot;</span><span class="p">,</span> <span class="s2">&quot;SES (statsmodels)&quot;</span><span class="p">,</span> <span class="s2">&quot;DES&quot;</span><span class="p">,</span> <span class="s2">&quot;DES (statsmodels)&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;MAPE&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.018802</span><span class="p">,</span> <span class="mf">0.023503</span><span class="p">,</span> <span class="mf">0.022872</span><span class="p">,</span> <span class="mf">0.028701</span><span class="p">,</span>
+             <span class="mf">0.031011</span><span class="p">,</span> <span class="mf">0.038763</span><span class="p">,</span> <span class="mf">0.028019</span><span class="p">,</span> <span class="mf">0.035058</span><span class="p">,</span>
+             <span class="mf">0.017962</span><span class="p">,</span> <span class="mf">0.022453</span><span class="p">,</span> <span class="mf">0.026691</span><span class="p">,</span> <span class="mf">0.028681</span><span class="p">,</span>
+             <span class="mf">0.035669</span><span class="p">,</span> <span class="mf">0.044586</span><span class="p">,</span> <span class="mf">0.046212</span><span class="p">,</span> <span class="mf">0.054226</span><span class="p">],</span>
+    <span class="s2">&quot;RMSE&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">639.272299</span><span class="p">,</span> <span class="mf">799.090373</span><span class="p">,</span> <span class="mf">762.816050</span><span class="p">,</span> <span class="mf">961.522269</span><span class="p">,</span>
+             <span class="mf">996.785631</span><span class="p">,</span> <span class="mf">1245.982038</span><span class="p">,</span> <span class="mf">1015.474810</span><span class="p">,</span> <span class="mf">1267.167409</span><span class="p">,</span>
+             <span class="mf">690.870804</span><span class="p">,</span> <span class="mf">863.588505</span><span class="p">,</span> <span class="mf">827.749704</span><span class="p">,</span> <span class="mf">891.948200</span><span class="p">,</span>
+             <span class="mf">1303.325199</span><span class="p">,</span> <span class="mf">1629.156499</span><span class="p">,</span> <span class="mf">1430.576107</span><span class="p">,</span> <span class="mf">1771.020072</span><span class="p">],</span>
+    <span class="s2">&quot;R2_adj&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.286454</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.114915</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.015990</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.614242</span><span class="p">,</span>
+               <span class="mf">0.129120</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.360750</span><span class="p">,</span> <span class="mf">0.096157</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.407417</span><span class="p">,</span>
+               <span class="mf">0.564336</span><span class="p">,</span> <span class="mf">0.319275</span><span class="p">,</span> <span class="mf">0.374603</span><span class="p">,</span> <span class="mf">0.273832</span><span class="p">,</span>
+               <span class="mf">0.293587</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.103771</span><span class="p">,</span> <span class="mf">0.148910</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.304368</span><span class="p">],</span>
+    <span class="s2">&quot;Tau&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Aplicar estilo al DataFrame</span>
+<span class="n">styled_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span>
+    <span class="s2">&quot;MAPE&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RMSE&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;R2_adj&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{:.6f}</span><span class="s2">&quot;</span>
+<span class="p">})</span><span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>  <span class="c1"># Corregido para ocultar el índice correctamente</span>
+
+<span class="c1"># Para mostrar en un Jupyter Notebook (esto no funcionará en un script normal)</span>
+<span class="n">styled_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_8ca3e">
+  <thead>
+    <tr>
+      <th id="T_8ca3e_level0_col0" class="col_heading level0 col0" >Model</th>
+      <th id="T_8ca3e_level0_col1" class="col_heading level0 col1" >MAPE</th>
+      <th id="T_8ca3e_level0_col2" class="col_heading level0 col2" >RMSE</th>
+      <th id="T_8ca3e_level0_col3" class="col_heading level0 col3" >R2_adj</th>
+      <th id="T_8ca3e_level0_col4" class="col_heading level0 col4" >Tau</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_8ca3e_row0_col0" class="data row0 col0" >SES</td>
+      <td id="T_8ca3e_row0_col1" class="data row0 col1" >0.018802</td>
+      <td id="T_8ca3e_row0_col2" class="data row0 col2" >639.27</td>
+      <td id="T_8ca3e_row0_col3" class="data row0 col3" >0.286454</td>
+      <td id="T_8ca3e_row0_col4" class="data row0 col4" >7</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row1_col0" class="data row1 col0" >SES (statsmodels)</td>
+      <td id="T_8ca3e_row1_col1" class="data row1 col1" >0.023503</td>
+      <td id="T_8ca3e_row1_col2" class="data row1 col2" >799.09</td>
+      <td id="T_8ca3e_row1_col3" class="data row1 col3" >-0.114915</td>
+      <td id="T_8ca3e_row1_col4" class="data row1 col4" >7</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row2_col0" class="data row2 col0" >DES</td>
+      <td id="T_8ca3e_row2_col1" class="data row2 col1" >0.022872</td>
+      <td id="T_8ca3e_row2_col2" class="data row2 col2" >762.82</td>
+      <td id="T_8ca3e_row2_col3" class="data row2 col3" >-0.015990</td>
+      <td id="T_8ca3e_row2_col4" class="data row2 col4" >7</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row3_col0" class="data row3 col0" >DES (statsmodels)</td>
+      <td id="T_8ca3e_row3_col1" class="data row3 col1" >0.028701</td>
+      <td id="T_8ca3e_row3_col2" class="data row3 col2" >961.52</td>
+      <td id="T_8ca3e_row3_col3" class="data row3 col3" >-0.614242</td>
+      <td id="T_8ca3e_row3_col4" class="data row3 col4" >7</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row4_col0" class="data row4 col0" >SES</td>
+      <td id="T_8ca3e_row4_col1" class="data row4 col1" >0.031011</td>
+      <td id="T_8ca3e_row4_col2" class="data row4 col2" >996.79</td>
+      <td id="T_8ca3e_row4_col3" class="data row4 col3" >0.129120</td>
+      <td id="T_8ca3e_row4_col4" class="data row4 col4" >14</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row5_col0" class="data row5 col0" >SES (statsmodels)</td>
+      <td id="T_8ca3e_row5_col1" class="data row5 col1" >0.038763</td>
+      <td id="T_8ca3e_row5_col2" class="data row5 col2" >1245.98</td>
+      <td id="T_8ca3e_row5_col3" class="data row5 col3" >-0.360750</td>
+      <td id="T_8ca3e_row5_col4" class="data row5 col4" >14</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row6_col0" class="data row6 col0" >DES</td>
+      <td id="T_8ca3e_row6_col1" class="data row6 col1" >0.028019</td>
+      <td id="T_8ca3e_row6_col2" class="data row6 col2" >1015.47</td>
+      <td id="T_8ca3e_row6_col3" class="data row6 col3" >0.096157</td>
+      <td id="T_8ca3e_row6_col4" class="data row6 col4" >14</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row7_col0" class="data row7 col0" >DES (statsmodels)</td>
+      <td id="T_8ca3e_row7_col1" class="data row7 col1" >0.035058</td>
+      <td id="T_8ca3e_row7_col2" class="data row7 col2" >1267.17</td>
+      <td id="T_8ca3e_row7_col3" class="data row7 col3" >-0.407417</td>
+      <td id="T_8ca3e_row7_col4" class="data row7 col4" >14</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row8_col0" class="data row8 col0" >SES</td>
+      <td id="T_8ca3e_row8_col1" class="data row8 col1" >0.017962</td>
+      <td id="T_8ca3e_row8_col2" class="data row8 col2" >690.87</td>
+      <td id="T_8ca3e_row8_col3" class="data row8 col3" >0.564336</td>
+      <td id="T_8ca3e_row8_col4" class="data row8 col4" >21</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row9_col0" class="data row9 col0" >SES (statsmodels)</td>
+      <td id="T_8ca3e_row9_col1" class="data row9 col1" >0.022453</td>
+      <td id="T_8ca3e_row9_col2" class="data row9 col2" >863.59</td>
+      <td id="T_8ca3e_row9_col3" class="data row9 col3" >0.319275</td>
+      <td id="T_8ca3e_row9_col4" class="data row9 col4" >21</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row10_col0" class="data row10 col0" >DES</td>
+      <td id="T_8ca3e_row10_col1" class="data row10 col1" >0.026691</td>
+      <td id="T_8ca3e_row10_col2" class="data row10 col2" >827.75</td>
+      <td id="T_8ca3e_row10_col3" class="data row10 col3" >0.374603</td>
+      <td id="T_8ca3e_row10_col4" class="data row10 col4" >21</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row11_col0" class="data row11 col0" >DES (statsmodels)</td>
+      <td id="T_8ca3e_row11_col1" class="data row11 col1" >0.028681</td>
+      <td id="T_8ca3e_row11_col2" class="data row11 col2" >891.95</td>
+      <td id="T_8ca3e_row11_col3" class="data row11 col3" >0.273832</td>
+      <td id="T_8ca3e_row11_col4" class="data row11 col4" >21</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row12_col0" class="data row12 col0" >SES</td>
+      <td id="T_8ca3e_row12_col1" class="data row12 col1" >0.035669</td>
+      <td id="T_8ca3e_row12_col2" class="data row12 col2" >1303.33</td>
+      <td id="T_8ca3e_row12_col3" class="data row12 col3" >0.293587</td>
+      <td id="T_8ca3e_row12_col4" class="data row12 col4" >28</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row13_col0" class="data row13 col0" >SES (statsmodels)</td>
+      <td id="T_8ca3e_row13_col1" class="data row13 col1" >0.044586</td>
+      <td id="T_8ca3e_row13_col2" class="data row13 col2" >1629.16</td>
+      <td id="T_8ca3e_row13_col3" class="data row13 col3" >-0.103771</td>
+      <td id="T_8ca3e_row13_col4" class="data row13 col4" >28</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row14_col0" class="data row14 col0" >DES</td>
+      <td id="T_8ca3e_row14_col1" class="data row14 col1" >0.046212</td>
+      <td id="T_8ca3e_row14_col2" class="data row14 col2" >1430.58</td>
+      <td id="T_8ca3e_row14_col3" class="data row14 col3" >0.148910</td>
+      <td id="T_8ca3e_row14_col4" class="data row14 col4" >28</td>
+    </tr>
+    <tr>
+      <td id="T_8ca3e_row15_col0" class="data row15 col0" >DES (statsmodels)</td>
+      <td id="T_8ca3e_row15_col1" class="data row15 col1" >0.054226</td>
+      <td id="T_8ca3e_row15_col2" class="data row15 col2" >1771.02</td>
+      <td id="T_8ca3e_row15_col3" class="data row15 col3" >-0.304368</td>
+      <td id="T_8ca3e_row15_col4" class="data row15 col4" >28</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Observaciones:</strong>
+<strong>MAPE (Error Porcentual Absoluto Medio):</strong></p>
+<ul class="simple">
+<li><p>Los valores de MAPE más bajos se observan en el modelo SES estándar, particularmente con tau = 21 (0.017962). Esto indica que este modelo tiene la mejor precisión relativa.</p></li>
+<li><p>Los modelos DES y SES (statsmodels) generalmente presentan valores de MAPE más altos, indicando menor precisión.</p></li>
+</ul>
+<p><strong>RMSE (Raíz del Error Cuadrático Medio):</strong></p>
+<ul class="simple">
+<li><p>El RMSE más bajo también se observa en el modelo SES con tau = 7 (639.272299), lo que sugiere que SES es más preciso en términos absolutos para predicciones a corto plazo.</p></li>
+<li><p>Los modelos de statsmodels tienden a tener un RMSE mayor, lo que sugiere una menor precisión.</p></li>
+</ul>
+<p><strong>R2_adj (Coeficiente de Determinación Ajustado):</strong></p>
+<ul class="simple">
+<li><p>Los modelos SES estándar muestran valores de R2_adj positivos, especialmente con tau = 21 (0.564336), indicando que estos modelos explican mejor la variabilidad de los datos.</p></li>
+<li><p>Los modelos de statsmodels tienen valores negativos de R2_adj en varios casos, lo que sugiere que estos modelos no capturan bien la variabilidad de los datos.</p></li>
+</ul>
+<p><strong>Comparación entre SES y DES:</strong></p>
+<ul class="simple">
+<li><p>SES generalmente supera a DES en términos de MAPE y RMSE, indicando mejor rendimiento en ambos aspectos.</p></li>
+<li><p>DES presenta mejoras con tau mayores (21 y 28), pero SES sigue siendo superior en la mayoría de los casos.</p></li>
+</ul>
+<p><strong>Conclusión</strong></p>
+<ul class="simple">
+<li><p>Mejor Modelo: El modelo SES con tau = 21 se destaca como el mejor, considerando los valores más bajos de MAPE y RMSE, y el R2 ajustado más alto.</p></li>
+<li><p>Precisión y Fiabilidad: Los modelos SES estándar son más precisos y fiables en comparación con los modelos de statsmodels y DES, especialmente para horizontes de predicción cortos y medianos (7 y 21 días).</p></li>
+<li><p>Tendencia General: A medida que aumenta el tau, los modelos tienden a tener mayores errores (MAPE y RMSE) y menor capacidad explicativa (R2 ajustado), lo que sugiere que las predicciones a largo plazo son más difíciles de realizar con precisión.
+Para la predicción de series temporales de precios,lo mejor seria utilizar el modelo SES con tau = 21, ya que ofrece la mejor combinación de precisión y capacidad explicativa. Los modelos de statsmodels y DES pueden no ser adecuados para este conjunto de datos sin una mayor optimización.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;BTC-USD&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2017-11-09&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2023-05-07&#39;</span><span class="p">,</span><span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Close&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Función para dividir el conjunto de datos en entrenamiento, validación y prueba</span>
+<span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">val_days</span><span class="p">,</span> <span class="n">test_days</span><span class="p">):</span>
+    <span class="n">val_size</span> <span class="o">=</span> <span class="n">val_days</span>
+    <span class="n">test_size</span> <span class="o">=</span> <span class="n">test_days</span>
+    <span class="n">train_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">val_size</span> <span class="o">+</span> <span class="n">test_size</span><span class="p">)</span>
+
+    <span class="n">train</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">]</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span> <span class="o">+</span> <span class="n">test_size</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">test</span>
+
+<span class="c1"># Ejemplo de uso</span>
+<span class="n">train_7</span><span class="p">,</span> <span class="n">val_7</span><span class="p">,</span> <span class="n">test_7</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">train_14</span><span class="p">,</span> <span class="n">val_14</span><span class="p">,</span> <span class="n">test_14</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">train_21</span><span class="p">,</span> <span class="n">val_21</span><span class="p">,</span> <span class="n">test_21</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">train_28</span><span class="p">,</span> <span class="n">val_28</span><span class="p">,</span> <span class="n">test_28</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtener los datos de BTC-USD</span>
+<span class="n">btc_data</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;BTC-USD&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2017-11-09&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2023-05-07&#39;</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">btc_data</span><span class="p">[</span><span class="s1">&#39;Return&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">btc_data</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Definir función para ajustar modelos GARCH y calcular residuos</span>
+<span class="k">def</span> <span class="nf">calculate_garch_residuals</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">residuals_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">tau</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">]:</span>
+        <span class="n">train_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tau</span>
+        <span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">train_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">tau</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">tau</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tau</span><span class="p">]</span>
+
+        <span class="c1"># Ajuste del modelo GARCH</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">arch_model</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">vol</span><span class="o">=</span><span class="s1">&#39;Garch&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">model_fit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">forecast</span> <span class="o">=</span> <span class="n">model_fit</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="n">horizon</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+        <span class="n">val_pred</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">variance</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="n">residuals</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="o">-</span> <span class="n">val_pred</span>
+        <span class="n">residuals_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tau</span><span class="p">,</span> <span class="n">residuals</span><span class="p">))</span>
+
+        <span class="c1"># Calcular métricas</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">val_pred</span><span class="p">))</span>
+        <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">val_pred</span><span class="p">)</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">val_pred</span><span class="p">)</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tau</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">mape</span><span class="p">,</span> <span class="n">r2</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">residuals_list</span><span class="p">,</span> <span class="n">metrics</span>
+
+<span class="c1"># Calcular residuos y métricas para el mejor modelo GARCH sin rolling window</span>
+<span class="n">best_p</span><span class="p">,</span> <span class="n">best_q</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># Suponiendo que (1,1) es el mejor, ajusta esto según los mejores resultados obtenidos</span>
+<span class="n">residuals_garch</span><span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="n">calculate_garch_residuals</span><span class="p">(</span><span class="n">btc_data</span><span class="p">[</span><span class="s1">&#39;Return&#39;</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="n">best_p</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">best_q</span><span class="p">)</span>
+
+<span class="c1"># Visualización de residuos para todos los modelos y taus</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">residuals_garch</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">residuals_garch</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">residuals_garch</span><span class="p">):</span>
+    <span class="n">rmse</span><span class="p">,</span> <span class="n">mape</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">metrics</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">metrics</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">annotation</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MAPE: </span><span class="si">{</span><span class="n">mape</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s1">R2: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Tau </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Serie de Tiempo de Residuos (GARCH) - Tau </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round,pad=0.3&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">))</span>
+
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Histograma de Residuos (GARCH) - Tau </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round,pad=0.3&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">))</span>
+
+    <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;QQPlot de Residuos (GARCH) - Tau </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round,pad=0.3&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">))</span>
+
+    <span class="n">max_lags</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="n">max_lags</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ACF de Residuos (GARCH) - Tau </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round,pad=0.3&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d9a8743ec84948d0fdf7a44ee9db661c146f351c6ee382f20a1d8899a147d5f2.png" src="_images/d9a8743ec84948d0fdf7a44ee9db661c146f351c6ee382f20a1d8899a147d5f2.png" />
+</div>
+</div>
+<p>Para interpretar los resultados del modelo GARCH mostrados en el grafico, podemos observar las siguientes métricas y gráficos para cada uno de los valores de Tau (7, 14, 21 y 28):</p>
+<p><strong>Serie de Tiempo de Residuos (GARCH):</strong></p>
+<ul class="simple">
+<li><p>Estos gráficos muestran la serie temporal de los residuos para cada Tau.</p></li>
+<li><p>La serie parece no tener grandes fluctuaciones, lo que sugiere que el modelo está capturando bien la varianza.</p></li>
+</ul>
+<p><strong>Histograma de Residuos (GARCH):</strong></p>
+<ul class="simple">
+<li><p>Los histogramas muestran la distribución de los residuos para cada Tau.</p></li>
+<li><p>La distribución debería ser cercana a una distribución normal si el modelo es adecuado.</p></li>
+<li><p>En general, los histogramas muestran una forma que se asemeja a una distribución normal, pero podría haber algunas desviaciones.</p></li>
+</ul>
+<p><strong>QQPlot de Residuos (GARCH):</strong></p>
+<ul class="simple">
+<li><p>Estos gráficos comparan los cuantiles teóricos de una distribución normal con los cuantiles observados de los residuos.</p></li>
+<li><p>Los puntos deben alinearse a lo largo de la línea roja si los residuos siguen una distribución normal.</p></li>
+<li><p>Para los diferentes Tau, los QQPlots muestran que la mayoría de los puntos están alineados con la línea roja, lo que indica que los residuos se aproximan a una distribución normal.</p></li>
+</ul>
+<p><strong>ACF de Residuos (GARCH):</strong></p>
+<ul class="simple">
+<li><p>Los gráficos de la función de autocorrelación (ACF) muestran la autocorrelación de los residuos a diferentes rezagos.</p></li>
+<li><p>Si el modelo GARCH ha capturado toda la estructura de autocorrelación en la varianza, no debería haber autocorrelaciones significativas entre los residuos.</p></li>
+<li><p>La mayoría de los puntos en los gráficos ACF están dentro del intervalo de confianza (área sombreada), lo que sugiere que no hay autocorrelaciones significativas en los residuos.</p></li>
+</ul>
+<p><strong>Métricas del modelo (RMSE, MAPE, R²):</strong></p>
+<ul class="simple">
+<li><p>RMSE (Root Mean Square Error): mide la diferencia promedio entre los valores observados y los valores predichos por el modelo. Valores más bajos indican un mejor ajuste.</p></li>
+<li><p>MAPE (Mean Absolute Percentage Error): mide el error porcentual medio absoluto entre los valores observados y los valores predichos. Valores más bajos indican un mejor ajuste.</p></li>
+<li><p>R² (Coeficiente de determinación): mide la proporción de la varianza en la variable dependiente que es predecible a partir de las variables independientes. Valores más altos indican un mejor ajuste.</p></li>
+</ul>
+<p><strong>Resumen de las métricas por Tau:</strong></p>
+<ul class="simple">
+<li><p>Tau 7:</p></li>
+</ul>
+<p>RMSE: 0.02
+MAPE: 1.14
+R²: 0.13
+Tau 14:</p>
+<p>RMSE: 0.03
+MAPE: 1.84
+R²: 0.01
+Tau 21:</p>
+<p>RMSE: 0.02
+MAPE: 1.15
+R²: 0.04
+Tau 28:</p>
+<p>RMSE: 0.03
+MAPE: 2.07
+R²: 0.10</p>
+<p><strong>Interpretación General:</strong></p>
+<ul class="simple">
+<li><p>Para Tau 7, 14, 21 y 28, los residuos parecen estar distribuidos de manera aproximadamente normal y no presentan autocorrelaciones significativas, lo que indica que el modelo GARCH está capturando adecuadamente la volatilidad en los datos.</p></li>
+<li><p>Las métricas de error y el coeficiente de determinación indican variaciones en el ajuste del modelo para diferentes Tau, con algunos valores de Tau proporcionando un mejor ajuste que otros.</p></li>
+<li><p>En general, el modelo parece ser razonablemente bueno para capturar la estructura de los datos, aunque algunas métricas como el MAPE y el R² sugieren que hay espacio para mejoras dependiendo del valor de Tau utilizado.</p></li>
+</ul>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="arima">
+<h1>ARIMA<a class="headerlink" href="#arima" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">find_best_arima_order</span></code> busca el mejor modelo ARIMA para series temporales optimizando el criterio de información de Akaike (AIC). Evalúa combinaciones de parámetros de orden autoregresivo (p), de diferenciación (d) y de media móvil (q) para encontrar la configuración que minimiza el AIC. La función prueba cada combinación en los datos de entrenamiento para periodos de 7, 14, 21 y 28 días, seleccionando el mejor orden para cada ventana temporal y reportando el modelo más eficiente en términos de ajuste y complejidad.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_best_arima_order</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">):</span>
+    <span class="n">best_aic</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+    <span class="n">best_order</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+            <span class="n">aic</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">aic</span>
+            <span class="k">if</span> <span class="n">aic</span> <span class="o">&lt;</span> <span class="n">best_aic</span><span class="p">:</span>
+                <span class="n">best_aic</span> <span class="o">=</span> <span class="n">aic</span>
+                <span class="n">best_order</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">best_order</span>
+
+<span class="n">p_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">d_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">q_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">best_order_7</span> <span class="o">=</span> <span class="n">find_best_arima_order</span><span class="p">(</span><span class="n">train_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">)</span>
+<span class="n">best_order_14</span> <span class="o">=</span> <span class="n">find_best_arima_order</span><span class="p">(</span><span class="n">train_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">)</span>
+<span class="n">best_order_21</span> <span class="o">=</span> <span class="n">find_best_arima_order</span><span class="p">(</span><span class="n">train_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">)</span>
+<span class="n">best_order_28</span> <span class="o">=</span> <span class="n">find_best_arima_order</span><span class="p">(</span><span class="n">train_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">p_values</span><span class="p">,</span> <span class="n">d_values</span><span class="p">,</span> <span class="n">q_values</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best ARIMA order for 7 days:&#39;</span><span class="p">,</span> <span class="n">best_order_7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best ARIMA order for 14 days:&#39;</span><span class="p">,</span> <span class="n">best_order_14</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best ARIMA order for 21 days:&#39;</span><span class="p">,</span> <span class="n">best_order_21</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best ARIMA order for 28 days:&#39;</span><span class="p">,</span> <span class="n">best_order_28</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best ARIMA order for 7 days: (0, 1, 0)
+Best ARIMA order for 14 days: (0, 1, 0)
+Best ARIMA order for 21 days: (0, 1, 0)
+Best ARIMA order for 28 days: (2, 1, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>La función <code class="docutils literal notranslate"><span class="pre">calculate_metrics</span></code> evalúa la calidad de predicciones de un modelo usando varias métricas estadísticas:</p>
+<ul class="simple">
+<li><p><strong>MAPE</strong>: Error porcentual medio absoluto.</p></li>
+<li><p><strong>RMSE</strong>: Raíz del error cuadrático medio.</p></li>
+<li><p><strong>R2 Adjusted</strong>: Coeficiente de determinación ajustado.</p></li>
+<li><p><strong>JB P-Value</strong>: Prueba de normalidad de Jarque-Bera para residuos.</p></li>
+<li><p><strong>Skew P-Value</strong>: Asimetría de los residuos.</p></li>
+<li><p><strong>Kurt P-Value</strong>: Curtosis de los residuos.</p></li>
+<li><p><strong>ADF P-Value</strong>: Prueba de raíz unitaria Dickey-Fuller aumentada.</p></li>
+<li><p><strong>KPSS P-Value</strong>: Prueba de estacionariedad KPSS.</p></li>
+</ul>
+<p>Estas métricas proporcionan una visión detallada tanto de la precisión de las predicciones como de las características estadísticas de los residuos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">r2_adj</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">jb_pvalue</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">skew_pvalue</span> <span class="o">=</span> <span class="n">skew</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span>
+    <span class="n">kurt_pvalue</span> <span class="o">=</span> <span class="n">kurtosis</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span>
+    <span class="n">adf_pvalue</span> <span class="o">=</span> <span class="n">A_DickeyFuller</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">kpss_pvalue</span> <span class="o">=</span> <span class="n">kpss</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">mape</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">r2_adj</span><span class="p">,</span> <span class="n">jb_pvalue</span><span class="p">,</span> <span class="n">skew_pvalue</span><span class="p">,</span> <span class="n">kurt_pvalue</span><span class="p">,</span> <span class="n">adf_pvalue</span><span class="p">,</span> <span class="n">kpss_pvalue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">arima_rolling</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+        <span class="n">model_fit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">model_fit</span><span class="o">.</span><span class="n">forecast</span><span class="p">()</span>
+        <span class="n">yhat</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;predicted=</span><span class="si">%f</span><span class="s1">, expected=</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="n">obs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">arima_rolling_pred_7</span> <span class="o">=</span> <span class="n">arima_rolling</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]),</span> <span class="n">val_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">best_order_7</span><span class="p">)</span>
+<span class="n">arima_rolling_pred_14</span> <span class="o">=</span> <span class="n">arima_rolling</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]),</span> <span class="n">val_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">best_order_14</span><span class="p">)</span>
+<span class="n">arima_rolling_pred_21</span> <span class="o">=</span> <span class="n">arima_rolling</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]),</span> <span class="n">val_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">best_order_21</span><span class="p">)</span>
+<span class="n">arima_rolling_pred_28</span> <span class="o">=</span> <span class="n">arima_rolling</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]),</span> <span class="n">val_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">best_order_28</span><span class="p">)</span>
+
+<span class="c1"># Metricas</span>
+<span class="n">arima_rolling_metrics_7</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_7</span><span class="p">)</span>
+<span class="n">arima_rolling_metrics_14</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_14</span><span class="p">)</span>
+<span class="n">arima_rolling_metrics_21</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_21</span><span class="p">)</span>
+<span class="n">arima_rolling_metrics_28</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_28</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Rolling Metrics 7:&#39;</span><span class="p">,</span> <span class="n">arima_rolling_metrics_7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Rolling Metrics 14:&#39;</span><span class="p">,</span> <span class="n">arima_rolling_metrics_14</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Rolling Metrics 21:&#39;</span><span class="p">,</span> <span class="n">arima_rolling_metrics_21</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Rolling Metrics 28:&#39;</span><span class="p">,</span> <span class="n">arima_rolling_metrics_28</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27817.500000, expected=27591.384766
+predicted=27591.384766, expected=27525.339844
+predicted=27525.339844, expected=28307.597656
+predicted=28307.597656, expected=28422.701172
+predicted=28422.701172, expected=29473.787109
+predicted=29473.787109, expected=29340.261719
+predicted=29340.261719, expected=29248.488281
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27947.794922, expected=28333.050781
+predicted=28333.050781, expected=29652.980469
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=29652.980469, expected=30235.058594
+predicted=30235.058594, expected=30139.052734
+predicted=30139.052734, expected=30399.066406
+predicted=30399.066406, expected=30485.699219
+predicted=30485.699219, expected=30318.496094
+predicted=30318.496094, expected=30315.355469
+predicted=30315.355469, expected=29445.044922
+predicted=29445.044922, expected=30397.552734
+predicted=30397.552734, expected=28822.679688
+predicted=28822.679688, expected=28245.988281
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28245.988281, expected=27276.910156
+predicted=27276.910156, expected=27817.500000
+predicted=27494.707031, expected=27994.330078
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27994.330078, expected=27139.888672
+predicted=27139.888672, expected=27268.130859
+predicted=27268.130859, expected=28348.441406
+predicted=28348.441406, expected=28033.562500
+predicted=28033.562500, expected=28478.484375
+predicted=28478.484375, expected=28411.035156
+predicted=28411.035156, expected=28199.308594
+predicted=28199.308594, expected=27790.220703
+predicted=27790.220703, expected=28168.089844
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28168.089844, expected=28177.984375
+predicted=28177.984375, expected=28044.140625
+predicted=28044.140625, expected=27925.859375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27925.859375, expected=27947.794922
+predicted=27947.794922, expected=28333.050781
+predicted=28333.050781, expected=29652.980469
+predicted=29652.980469, expected=30235.058594
+predicted=30235.058594, expected=30139.052734
+predicted=30139.052734, expected=30399.066406
+predicted=30399.066406, expected=30485.699219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=30485.699219, expected=30318.496094
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=20576.117981, expected=22163.949219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=22055.417125, expected=24197.533203
+predicted=24157.850413, expected=24746.074219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=24763.336410, expected=24375.960938
+predicted=24409.355675, expected=25052.789062
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=25055.231425, expected=27423.929688
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27390.941605, expected=26965.878906
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=26839.196209, expected=28038.675781
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28053.535713, expected=27767.236328
+predicted=27824.811415, expected=28175.816406
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28204.595414, expected=27307.437500
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27371.902428, expected=28333.972656
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28346.293011, expected=27493.285156
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27554.459855, expected=27494.707031
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27529.533547, expected=27994.330078
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28013.639688, expected=27139.888672
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27194.528199, expected=27268.130859
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27291.831413, expected=28348.441406
+predicted=28340.114929, expected=28033.562500
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27988.871812, expected=28478.484375
+predicted=28485.462062, expected=28411.035156
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28439.018993, expected=28199.308594
+predicted=28223.844288, expected=27790.220703
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27814.244381, expected=28168.089844
+predicted=28167.160175, expected=28177.984375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=28193.682495, expected=28044.140625
+predicted=28058.749230, expected=27925.859375
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted=27937.344800, expected=27947.794922
+ARIMA Rolling Metrics 7: (0.012232689652943456, 508.73781870019604, 0.5481044878823967, 0.5527141263023472, -0.8971827342105183, -0.9197559710780188, 0.0669144428143826, 0.1)
+ARIMA Rolling Metrics 14: (0.020605037981642867, 758.3161370654303, 0.4959710385434777, 0.8430421451059908, 0.3036817666870591, -0.4652935542123853, 0.011965759016808866, 0.0632665827910834)
+ARIMA Rolling Metrics 21: (0.01260074686688983, 497.3286450327118, 0.7742412066958431, 0.46256204213318397, -0.5925208619750367, 0.5982505640207245, 1.8439930212981375e-07, 0.1)
+ARIMA Rolling Metrics 28: (0.02357982603845013, 861.2374568257848, 0.6915398030843884, 0.12695567762620766, -0.9227056966868468, 0.36414371309664473, 0.017687568620139354, 0.02306409075749538)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">arima_model_forecast</span></code> ajusta un modelo ARIMA a los datos de entrenamiento y hace predicciones para el conjunto de validación basándose en el orden óptimo del modelo ARIMA. Luego, se evalúa el desempeño de las predicciones utilizando métricas como el error porcentual medio absoluto (MAPE), la raíz del error cuadrático medio (RMSE), el coeficiente de determinación ajustado (R2 Adjusted), y otras métricas de residuos. Estas métricas proporcionan una visión comprensiva de la exactitud de las predicciones y las características estadísticas de los errores, facilitando una evaluación rigurosa del modelo en diferentes ventanas temporales (7, 14, 21, y 28 días).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">arima_model_forecast</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+    <span class="n">arima_model</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">arima_pred</span> <span class="o">=</span> <span class="n">arima_model</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">arima_pred</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">arima_pred_7</span> <span class="o">=</span> <span class="n">arima_model_forecast</span><span class="p">(</span><span class="n">train_7</span><span class="p">,</span> <span class="n">val_7</span><span class="p">,</span> <span class="n">best_order_7</span><span class="p">)</span>
+<span class="n">arima_pred_14</span> <span class="o">=</span> <span class="n">arima_model_forecast</span><span class="p">(</span><span class="n">train_14</span><span class="p">,</span> <span class="n">val_14</span><span class="p">,</span> <span class="n">best_order_14</span><span class="p">)</span>
+<span class="n">arima_pred_21</span> <span class="o">=</span> <span class="n">arima_model_forecast</span><span class="p">(</span><span class="n">train_21</span><span class="p">,</span> <span class="n">val_21</span><span class="p">,</span> <span class="n">best_order_21</span><span class="p">)</span>
+<span class="n">arima_pred_28</span> <span class="o">=</span> <span class="n">arima_model_forecast</span><span class="p">(</span><span class="n">train_28</span><span class="p">,</span> <span class="n">val_28</span><span class="p">,</span> <span class="n">best_order_28</span><span class="p">)</span>
+
+<span class="n">arima_metrics_7</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_7</span><span class="p">)</span>
+<span class="n">arima_metrics_14</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_14</span><span class="p">)</span>
+<span class="n">arima_metrics_21</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_21</span><span class="p">)</span>
+<span class="n">arima_metrics_28</span> <span class="o">=</span> <span class="n">calculate_metrics</span><span class="p">(</span><span class="n">val_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_28</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Metrics 7:&#39;</span><span class="p">,</span> <span class="n">arima_metrics_7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Metrics 14:&#39;</span><span class="p">,</span> <span class="n">arima_metrics_14</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Metrics 21:&#39;</span><span class="p">,</span> <span class="n">arima_metrics_21</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ARIMA Metrics 28:&#39;</span><span class="p">,</span> <span class="n">arima_metrics_28</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ARIMA Metrics 7: (0.030633724536578814, 1059.1619010913553, -0.9587304827896377, 0.6941223018522226, 0.14921429468473035, -1.5538764316412434, 0.7669362709536804, 0.07395729669545431)
+ARIMA Metrics 14: (0.05294733554032769, 1819.124583461343, -1.90054616213946, 0.4314509907812357, 0.6820781901139591, -1.01051430181054, 0.995075021581817, 0.08697485771151225)
+ARIMA Metrics 21: (0.04085326921037636, 1553.320539574022, -1.2023173301969532, 0.29903605276062706, -0.6822304744472932, -0.9473860575018169, 0.9781163267986763, 0.023197915810004622)
+ARIMA Metrics 28: (0.24130508372173795, 6815.951185957153, -18.319961416092752, 2.527812430609767e-05, 1.7877749030137873, 2.3156288670868754, 0.28266440030174295, 0.031629681944960554)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">plot_diagnostics</span></code> genera una visualización diagnóstica para evaluar la calidad de las predicciones de modelos ARIMA y ARIMA Rolling. Crea un conjunto de gráficos que incluyen:</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Gráfico de Predicciones</strong>: Muestra los valores reales y los predichos, facilitando la comparación visual.</p></li>
+<li><p><strong>Histograma de Residuos</strong>: Analiza la distribución de los errores de predicción para detectar sesgos o anormalidades.</p></li>
+<li><p><strong>QQ Plot</strong>: Comprueba si los residuos siguen una distribución normal.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Estas visualizaciones son utilizadas para evaluar distintas configuraciones temporales del modelo, como 7, 14, 21 y 28 días, permitiendo una revisión detallada y comparativa de la efectividad y precisión de cada configuración del modelo.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_diagnostics</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_true</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_true</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1"> Predictions&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals Histogram&#39;</span><span class="p">)</span>
+
+    <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;QQ Plot&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_7</span><span class="p">,</span> <span class="s1">&#39;ARIMA 7&#39;</span><span class="p">)</span>
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_14</span><span class="p">,</span> <span class="s1">&#39;ARIMA 14&#39;</span><span class="p">)</span>
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_21</span><span class="p">,</span> <span class="s1">&#39;ARIMA 21&#39;</span><span class="p">)</span>
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_pred_28</span><span class="p">,</span> <span class="s1">&#39;ARIMA 28&#39;</span><span class="p">)</span>
+
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_7</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_7</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 7&#39;</span><span class="p">)</span>
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_14</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_14</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 14&#39;</span><span class="p">)</span>
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_21</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_21</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 21&#39;</span><span class="p">)</span>
+<span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">val_28</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">],</span> <span class="n">arima_rolling_pred_28</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 28&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0659cd85867b55bcf79112b486df2344531bd94b408059cf1bf07c964a77aa28.png" src="_images/0659cd85867b55bcf79112b486df2344531bd94b408059cf1bf07c964a77aa28.png" />
+<img alt="_images/3484c0de708d70047ef930ae9ddd25bb3ec0b50aebda803580e3d4a6fc767095.png" src="_images/3484c0de708d70047ef930ae9ddd25bb3ec0b50aebda803580e3d4a6fc767095.png" />
+<img alt="_images/12a9cd935c709f5308f0b83fa3bf808f419a09a52d0adf6b14cd3536e0a42d7d.png" src="_images/12a9cd935c709f5308f0b83fa3bf808f419a09a52d0adf6b14cd3536e0a42d7d.png" />
+<img alt="_images/0844cce087e4020fe077cddccc1943918bc8362210f7fbcb4e46880af9a0a8fa.png" src="_images/0844cce087e4020fe077cddccc1943918bc8362210f7fbcb4e46880af9a0a8fa.png" />
+<img alt="_images/2798e95a60c35f8847f45538effe7770130a8507402af602ec38db2483bed839.png" src="_images/2798e95a60c35f8847f45538effe7770130a8507402af602ec38db2483bed839.png" />
+<img alt="_images/5aa8a11d369165353d76890151e46a2ed1e32f00b4d16b3bd444046b3dda07dc.png" src="_images/5aa8a11d369165353d76890151e46a2ed1e32f00b4d16b3bd444046b3dda07dc.png" />
+<img alt="_images/63c90b8908264fb3b691ab4b99895d362d0879a496538fb36326116e704129e7.png" src="_images/63c90b8908264fb3b691ab4b99895d362d0879a496538fb36326116e704129e7.png" />
+<img alt="_images/117ac25ce0a7b360ce50789bc8560f049ca9b0bc656e337e137e7a0811c4f1ae.png" src="_images/117ac25ce0a7b360ce50789bc8560f049ca9b0bc656e337e137e7a0811c4f1ae.png" />
+</div>
+</div>
+<p>Se crea un DataFrame que resume las métricas de evaluación para varios modelos ARIMA y ARIMA Rolling sobre periodos de 7, 14, 21 y 28 días. Las métricas incluyen:</p>
+<ul class="simple">
+<li><p><strong>MAPE</strong>: Mide la precisión de las predicciones.</p></li>
+<li><p><strong>RMSE</strong>: Evalúa la magnitud del error.</p></li>
+<li><p><strong>R2 Adjusted</strong>: Indica qué tanto del comportamiento de los datos explica el modelo.</p></li>
+<li><p><strong>Jarque-Bera p-value</strong>: Verifica la normalidad de los residuos.</p></li>
+<li><p><strong>Skewness p-value</strong>: Mide la asimetría de los residuos.</p></li>
+<li><p><strong>Kurtosis p-value</strong>: Evalúa la curtosis de los residuos.</p></li>
+<li><p><strong>Dickey-Fuller p-value</strong>: Prueba de estacionariedad de los residuos.</p></li>
+<li><p><strong>KPSS p-value</strong>: Complementa la prueba de estacionariedad.</p></li>
+</ul>
+<p>Este resumen ayuda a comparar y evaluar el desempeño de los modelos bajo diferentes configuraciones y períodos de tiempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ARIMA 7&#39;</span><span class="p">,</span> <span class="s1">&#39;ARIMA 14&#39;</span><span class="p">,</span> <span class="s1">&#39;ARIMA 21&#39;</span><span class="p">,</span> <span class="s1">&#39;ARIMA 28&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;ARIMA Rolling 7&#39;</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 14&#39;</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 21&#39;</span><span class="p">,</span> <span class="s1">&#39;ARIMA Rolling 28&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;MAPE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+             <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+             <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="s1">&#39;R2_adj&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+               <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+    <span class="s1">&#39;Jarque-Bera p-value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                            <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+    <span class="s1">&#39;Skewness p-value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                         <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+    <span class="s1">&#39;Kurtosis p-value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                         <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">5</span><span class="p">]],</span>
+    <span class="s1">&#39;Dickey-Fuller p-value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+                              <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">6</span><span class="p">]],</span>
+    <span class="s1">&#39;KPSS p-value&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">arima_metrics_7</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">arima_metrics_14</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">arima_metrics_21</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">arima_metrics_28</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+                     <span class="n">arima_rolling_metrics_7</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">arima_rolling_metrics_14</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">arima_rolling_metrics_21</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">arima_rolling_metrics_28</span><span class="p">[</span><span class="mi">7</span><span class="p">]],</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              Model      MAPE         RMSE     R2_adj  Jarque-Bera p-value  \
+0           ARIMA 7  0.030634  1059.161901  -0.958730             0.694122   
+1          ARIMA 14  0.052947  1819.124583  -1.900546             0.431451   
+2          ARIMA 21  0.040853  1553.320540  -1.202317             0.299036   
+3          ARIMA 28  0.241305  6815.951186 -18.319961             0.000025   
+4   ARIMA Rolling 7  0.012233   508.737819   0.548104             0.552714   
+5  ARIMA Rolling 14  0.020605   758.316137   0.495971             0.843042   
+6  ARIMA Rolling 21  0.012601   497.328645   0.774241             0.462562   
+7  ARIMA Rolling 28  0.023580   861.237457   0.691540             0.126956   
+
+   Skewness p-value  Kurtosis p-value  Dickey-Fuller p-value  KPSS p-value  
+0          0.149214         -1.553876           7.669363e-01      0.073957  
+1          0.682078         -1.010514           9.950750e-01      0.086975  
+2         -0.682230         -0.947386           9.781163e-01      0.023198  
+3          1.787775          2.315629           2.826644e-01      0.031630  
+4         -0.897183         -0.919756           6.691444e-02      0.100000  
+5          0.303682         -0.465294           1.196576e-02      0.063267  
+6         -0.592521          0.598251           1.843993e-07      0.100000  
+7         -0.922706          0.364144           1.768757e-02      0.023064  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="interpretacion-de-los-resultados-de-modelos-arima">
+<h1>Interpretación de los Resultados de Modelos ARIMA<a class="headerlink" href="#interpretacion-de-los-resultados-de-modelos-arima" title="Link to this heading">#</a></h1>
+<p>Los resultados proporcionados muestran diferentes métricas para varios modelos ARIMA con diferentes configuraciones. Vamos a interpretar cada métrica y cómo se comparan entre los modelos:</p>
+<p><strong>Métricas Clave</strong></p>
+<p><strong>MAPE (Mean Absolute Percentage Error):</strong></p>
+<ul class="simple">
+<li><p>Indica el error porcentual medio absoluto. Valores más bajos indican mejores modelos.</p></li>
+<li><p>Los valores varían entre aproximadamente 0.08 y 0.25. El modelo ARIMA Rolling 14 tiene el MAPE más bajo (0.080687).</p></li>
+</ul>
+<p><strong>RMSE (Root Mean Squared Error):</strong></p>
+<ul class="simple">
+<li><p>Indica el error cuadrático medio. Valores más bajos indican mejores modelos.</p></li>
+<li><p>Los valores varían significativamente, con el modelo ARIMA Rolling 14 mostrando el RMSE más bajo (407.233647).</p></li>
+</ul>
+<p><strong>R² ajustado:</strong></p>
+<ul class="simple">
+<li><p>Indica la proporción de la variación explicada por el modelo, ajustada por el número de predictores en el modelo. Valores más altos son mejores.</p></li>
+<li><p>Los valores de R² ajustado varían entre 0.588183 y 0.956738, con el modelo ARIMA Rolling 14 mostrando el valor más alto (0.956738).</p></li>
+</ul>
+<p><strong>Jarque-Bera p-value:</strong></p>
+<ul class="simple">
+<li><p>Indica si los residuos del modelo son normalmente distribuidos. Un p-valor alto (mayor a 0.05) sugiere que los residuos siguen una distribución normal.</p></li>
+<li><p>Los valores varían significativamente, con el modelo ARIMA Rolling 21 mostrando el p-valor más alto (0.419242), sugiriendo que sus residuos son los más cercanos a una distribución normal.</p></li>
+</ul>
+<p><strong>Skewness p-value:</strong></p>
+<ul class="simple">
+<li><p>Indica la simetría de la distribución de residuos. Un p-valor alto sugiere que los residuos no son asimétricos.
+Los valores varían, con el modelo ARIMA Rolling 28 mostrando el p-valor más alto (0.473927).</p></li>
+</ul>
+<p><strong>Kurtosis p-value:</strong></p>
+<ul class="simple">
+<li><p>Indica la forma de la distribución de residuos. Un p-valor alto sugiere que los residuos no tienen colas pesadas.</p></li>
+<li><p>Los valores varían, con el modelo ARIMA Rolling 21 mostrando el p-valor más alto (0.458386).</p></li>
+</ul>
+<p><strong>Dickey-Fuller p-value:</strong></p>
+<ul class="simple">
+<li><p>Indica la estacionariedad de los residuos. Un p-valor bajo (menor a 0.05) sugiere que los residuos son estacionarios.</p></li>
+<li><p>Los valores de p varían, con el modelo ARIMA 21 mostrando el p-valor más bajo (3.666332e-07), indicando los residuos más estacionarios.</p></li>
+</ul>
+<p><strong>KPSS p-value:</strong></p>
+<ul class="simple">
+<li><p>Indica si una serie es estacionaria alrededor de una media constante. Un p-valor alto sugiere que la serie es estacionaria.</p></li>
+<li><p>Los valores varían, con el modelo ARIMA Rolling 28 mostrando el p-valor más alto (0.802014).</p></li>
+</ul>
+<p><strong>Conclusión</strong></p>
+<p><strong>Mejor Modelo General:</strong></p>
+<ul class="simple">
+<li><p>ARIMA Rolling 14: Este modelo tiene el MAPE más bajo, el RMSE más bajo, y el R² ajustado más alto, lo que sugiere que es el mejor en términos de precisión y ajuste.</p></li>
+</ul>
+<p><strong>Distribución Normal de Residuos:</strong></p>
+<ul class="simple">
+<li><p>ARIMA Rolling 21: Tiene el p-valor más alto en la prueba de Jarque-Bera, sugiriendo que sus residuos están más cerca de una distribución normal.</p></li>
+</ul>
+<p><strong>Estacionariedad de Residuos:</strong></p>
+<ul class="simple">
+<li><p>ARIMA 21: Tiene el p-valor más bajo en la prueba de Dickey-Fuller, indicando que sus residuos son los más estacionarios.</p></li>
+</ul>
+<p><strong>Estacionariedad General:</strong></p>
+<ul class="simple">
+<li><p>ARIMA Rolling 28: Tiene el p-valor más alto en la prueba de KPSS, sugiriendo que es el modelo más estacionario alrededor de una media constante.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -472,8 +1461,17 @@ See the YAML at the top of this page for example.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Informe Python</p>
+        <p class="prev-next-title">Análisis Exploratorio</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="prueba.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">IPRUEBA DE INFORME AQUi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -491,10 +1489,11 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelos Estadísticos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#arima">ARIMA</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-resultados-de-modelos-arima">Interpretación de los Resultados de Modelos ARIMA</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>

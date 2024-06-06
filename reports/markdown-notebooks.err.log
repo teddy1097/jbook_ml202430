@@ -1,0 +1,164 @@
+Traceback (most recent call last):
+  File "C:\teddy\envs\ml_venv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\teddy\envs\ml_venv\lib\site-packages\nbclient\client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\teddy\envs\ml_venv\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\teddy\envs\ml_venv\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "C:\teddy\envs\ml_venv\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\teddy\envs\ml_venv\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\teddy\envs\ml_venv\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def arima_rolling(history, test, order):
+    predictions = list()
+    for t in range(len(test)):
+        model = ARIMA(history, order=order)
+        model_fit = model.fit()
+        output = model_fit.forecast()
+        yhat = output[0]
+        predictions.append(yhat)
+        obs = test[t]
+        history.append(obs)
+        print('predicted=%f, expected=%f' % (yhat, obs))
+    return pd.Series(predictions, index=test.index)
+
+arima_rolling_pred_7 = arima_rolling(list(train_7['Close']), val_7['Close'], best_order_7)
+arima_rolling_pred_14 = arima_rolling(list(train_14['Close']), val_14['Close'], best_order_14)
+arima_rolling_pred_21 = arima_rolling(list(train_21['Close']), val_21['Close'], best_order_21)
+arima_rolling_pred_28 = arima_rolling(list(train_28['Close']), val_28['Close'], best_order_28)
+
+# Metricas
+arima_rolling_metrics_7 = calculate_metrics(val_7['Close'], arima_rolling_pred_7)
+arima_rolling_metrics_14 = calculate_metrics(val_14['Close'], arima_rolling_pred_14)
+arima_rolling_metrics_21 = calculate_metrics(val_21['Close'], arima_rolling_pred_21)
+arima_rolling_metrics_28 = calculate_metrics(val_28['Close'], arima_rolling_pred_28)
+
+print('ARIMA Rolling Metrics 7:', arima_rolling_metrics_7)
+print('ARIMA Rolling Metrics 14:', arima_rolling_metrics_14)
+print('ARIMA Rolling Metrics 21:', arima_rolling_metrics_21)
+print('ARIMA Rolling Metrics 28:', arima_rolling_metrics_28)
+------------------
+
+----- stdout -----
+predicted=27817.500000, expected=27591.384766
+predicted=27591.384766, expected=27525.339844
+predicted=27525.339844, expected=28307.597656
+predicted=28307.597656, expected=28422.701172
+predicted=28422.701172, expected=29473.787109
+predicted=29473.787109, expected=29340.261719
+predicted=29340.261719, expected=29248.488281
+predicted=27947.794922, expected=28333.050781
+predicted=28333.050781, expected=29652.980469
+----- stdout -----
+predicted=29652.980469, expected=30235.058594
+predicted=30235.058594, expected=30139.052734
+predicted=30139.052734, expected=30399.066406
+----- stdout -----
+predicted=30399.066406, expected=30485.699219
+predicted=30485.699219, expected=30318.496094
+predicted=30318.496094, expected=30315.355469
+predicted=30315.355469, expected=29445.044922
+predicted=29445.044922, expected=30397.552734
+predicted=30397.552734, expected=28822.679688
+predicted=28822.679688, expected=28245.988281
+predicted=28245.988281, expected=27276.910156
+predicted=27276.910156, expected=27817.500000
+predicted=27494.707031, expected=27994.330078
+----- stdout -----
+predicted=27994.330078, expected=27139.888672
+predicted=27139.888672, expected=27268.130859
+----- stdout -----
+predicted=27268.130859, expected=28348.441406
+predicted=28348.441406, expected=28033.562500
+predicted=28033.562500, expected=28478.484375
+predicted=28478.484375, expected=28411.035156
+predicted=28411.035156, expected=28199.308594
+predicted=28199.308594, expected=27790.220703
+predicted=27790.220703, expected=28168.089844
+predicted=28168.089844, expected=28177.984375
+predicted=28177.984375, expected=28044.140625
+predicted=28044.140625, expected=27925.859375
+predicted=27925.859375, expected=27947.794922
+----- stdout -----
+predicted=27947.794922, expected=28333.050781
+predicted=28333.050781, expected=29652.980469
+----- stdout -----
+predicted=29652.980469, expected=30235.058594
+predicted=30235.058594, expected=30139.052734
+predicted=30139.052734, expected=30399.066406
+predicted=30399.066406, expected=30485.699219
+predicted=30485.699219, expected=30318.496094
+----- stdout -----
+predicted=20576.117981, expected=22163.949219
+----- stdout -----
+predicted=22055.417125, expected=24197.533203
+predicted=24157.850413, expected=24746.074219
+----- stdout -----
+predicted=24763.336410, expected=24375.960938
+predicted=24409.355675, expected=25052.789062
+----- stdout -----
+predicted=25055.231425, expected=27423.929688
+----- stdout -----
+predicted=27390.941605, expected=26965.878906
+----- stdout -----
+predicted=26839.196209, expected=28038.675781
+----- stdout -----
+predicted=28053.535713, expected=27767.236328
+predicted=27824.811415, expected=28175.816406
+----- stdout -----
+predicted=28204.595414, expected=27307.437500
+----- stdout -----
+predicted=27371.902428, expected=28333.972656
+----- stdout -----
+predicted=28346.293011, expected=27493.285156
+----- stdout -----
+predicted=27554.459855, expected=27494.707031
+----- stdout -----
+predicted=27529.533547, expected=27994.330078
+----- stdout -----
+predicted=28013.639688, expected=27139.888672
+----- stdout -----
+predicted=27194.528199, expected=27268.130859
+----- stdout -----
+predicted=27291.831413, expected=28348.441406
+predicted=28340.114929, expected=28033.562500
+----- stdout -----
+predicted=27988.871812, expected=28478.484375
+predicted=28485.462062, expected=28411.035156
+----- stdout -----
+predicted=28439.018993, expected=28199.308594
+predicted=28223.844288, expected=27790.220703
+----- stdout -----
+predicted=27814.244381, expected=28168.089844
+predicted=28167.160175, expected=28177.984375
+----- stdout -----
+predicted=28193.682495, expected=28044.140625
+predicted=28058.749230, expected=27925.859375
+----- stdout -----
+predicted=27937.344800, expected=27947.794922
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[9], line 20[0m
+[0;32m     17[0m arima_rolling_pred_28 [38;5;241m=[39m arima_rolling([38;5;28mlist[39m(train_28[[38;5;124m'[39m[38;5;124mClose[39m[38;5;124m'[39m]), val_28[[38;5;124m'[39m[38;5;124mClose[39m[38;5;124m'[39m], best_order_28)
+[0;32m     19[0m [38;5;66;03m# Metricas[39;00m
+[1;32m---> 20[0m arima_rolling_metrics_7 [38;5;241m=[39m [43mcalculate_metrics[49m[43m([49m[43mval_7[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mClose[39;49m[38;5;124;43m'[39;49m[43m][49m[43m,[49m[43m [49m[43marima_rolling_pred_7[49m[43m)[49m
+[0;32m     21[0m arima_rolling_metrics_14 [38;5;241m=[39m calculate_metrics(val_14[[38;5;124m'[39m[38;5;124mClose[39m[38;5;124m'[39m], arima_rolling_pred_14)
+[0;32m     22[0m arima_rolling_metrics_21 [38;5;241m=[39m calculate_metrics(val_21[[38;5;124m'[39m[38;5;124mClose[39m[38;5;124m'[39m], arima_rolling_pred_21)
+
+Cell [1;32mIn[8], line 8[0m, in [0;36mcalculate_metrics[1;34m(y_true, y_pred)[0m
+[0;32m      6[0m skew_pvalue [38;5;241m=[39m skew(y_pred [38;5;241m-[39m y_true)
+[0;32m      7[0m kurt_pvalue [38;5;241m=[39m kurtosis(y_pred [38;5;241m-[39m y_true)
+[1;32m----> 8[0m adf_pvalue [38;5;241m=[39m [43madfuller[49m(y_pred [38;5;241m-[39m y_true)[[38;5;241m1[39m]
+[0;32m      9[0m kpss_pvalue [38;5;241m=[39m kpss(y_pred [38;5;241m-[39m y_true)[[38;5;241m1[39m]
+[0;32m     11[0m [38;5;28;01mreturn[39;00m mape, rmse, r2_adj, jb_pvalue, skew_pvalue, kurt_pvalue, adf_pvalue, kpss_pvalue
+
+[1;31mNameError[0m: name 'adfuller' is not defined
+
